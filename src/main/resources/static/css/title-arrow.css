@@ -1,0 +1,8 @@
+.title-arrow {
+    display: flex;
+    align-items: center;
+}
+
+.title-arrow .btn {
+    margin-right: 10px;
+}

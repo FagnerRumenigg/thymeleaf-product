@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+    <div class="brand">Nelsys Solutions</div>
+    <div class="nav-buttons">
+        <a href="/login" class="btn btn-primary">Sair</a>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <div class="mb-3">
+        <a href="/create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Cadastrar produto
+        </a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Preço (R$)</th>
+            <th scope="col">Data de cadastro</th>
+            <th scope="col">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${list}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.registrationDate}"></td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${item.id})}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                </a>
+                <form th:action="@{/delete/{id}(id=${item.id})}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este item?');">
+                        <i class="bi bi-trash"></i> Deletar
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
